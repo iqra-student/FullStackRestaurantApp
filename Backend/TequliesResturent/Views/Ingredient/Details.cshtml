@@ -1,0 +1,39 @@
+﻿@model TequliesResturent.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Ingredient Product Details";
+}
+
+<h2>Ingredient: @Model.Name</h2>
+
+<table class="table table-bordered mt-4">
+    <thead class="table-dark">
+        <tr>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.ProductIngredients != null && Model.ProductIngredients.Any())
+        {
+            foreach (var productIngredient in Model.ProductIngredients)
+            {
+                var product = productIngredient.Product;
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price.ToString("C")</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3" class="text-center text-muted">No products associated with this ingredient.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-secondary">← Back to List</a>

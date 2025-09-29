@@ -1,0 +1,44 @@
+﻿@model TequliesResturent.Models.Ingredient
+
+@{
+    ViewBag.Title = "Create Ingredient";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header text-white text-center rounded-top-4" style="background-color: #CD853F; border-color: #CD853F;">
+                    <h3 class="mb-0">Add New Ingredient</h3>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <form asp-action="Create" method="post">
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-semibold"></label>
+                            <input asp-for="Name" class="form-control rounded-3 shadow-sm" placeholder="Enter ingredient name" />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-semibold">Description</label>
+                            <textarea asp-for="Description" class="form-control rounded-3 shadow-sm" rows="3" placeholder="Enter description..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary px-4 rounded-pill">← Back</a>
+                            <button type="submit" class="btn btn-primary px-4 rounded-pill" style="background-color: #CD853F; border-color: #CD853F;">Create</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

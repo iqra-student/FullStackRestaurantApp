@@ -1,0 +1,36 @@
+﻿html, body {
+    scroll-behavior: smooth;
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.hero-section {
+    position: relative;
+    background: url('/images/hero-biryani.jpg') no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.btn-warning {
+    background-color: #FFA500;
+    border-color: #FFA500;
+}
+
+    .btn-warning:hover {
+        background-color: #ff8800;
+        border-color: #ff8800;
+    }

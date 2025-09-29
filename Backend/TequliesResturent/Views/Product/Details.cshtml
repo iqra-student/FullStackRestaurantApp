@@ -1,0 +1,64 @@
+﻿@model TequliesResturent.Models.Product
+
+@{
+    ViewBag.Title = "Product Details";
+}
+
+<h2 class="mt-4 mb-4 text-center " style="color: #CD853F;">Product Details</h2>
+
+<div class="card shadow-sm border-0 mb-4">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="@Url.Content(Model.ImageUrl)" class="img-fluid rounded-start h-100 w-100" style="object-fit: cover;" alt="@Model.Name">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h4 class="card-title text-dark">@Model.Name</h4>
+                <p class="card-text"><strong class="text-muted">Description:</strong> @Model.Description</p>
+                <p class="card-text">
+                    <strong class="text-muted">Price:</strong>
+                    <span class="fw-bold text-success">$@Model.Price.ToString("0.00")</span>
+                </p>
+                <a asp-action="Index" class="btn mt-3 text-white" style="background-color: #CD853F; border-color: #CD853F;">Back to Product List</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h4 class="mt-4 text-warning" style="color: #CD853F;">Ingredients</h4>
+
+@if (Model.ProductIngredients != null && Model.ProductIngredients.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead style="background-color: #FFDAB9;">
+                <!-- light orange -->
+                <tr>
+                    <th>#</th>
+                    <th>Ingredient Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int index = 1;
+                }
+                @foreach (var pi in Model.ProductIngredients)
+                {
+                    <tr>
+                        <td>@index</td>
+                        <td>@pi.Ingredient.Name</td>
+                        <td>@pi.Ingredient.Description</td>
+                    </tr>
+                    index++;
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-info text-center mt-3">
+        No ingredients found for this product.
+    </div>
+}

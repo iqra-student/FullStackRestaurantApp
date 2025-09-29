@@ -1,0 +1,44 @@
+﻿@model IEnumerable<TequliesResturent.Models.Ingredient>
+
+@{
+    ViewData["Title"] = "Ingredients";
+}
+
+<h2 class="mb-4" style="color: #f5a623;">Ingredients List</h2>
+
+<a asp-action="Create" class="btn mb-3" style="background-color: #f8c471; color: #333;">+ Create New Ingredient</a>
+
+<table class="table table-bordered table-striped">
+    <thead style="background-color: #fdebd0;">
+        <tr>
+            <th>Sr No.</th>
+            <th>Ingredient Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            int index = 1;
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@index</td>
+                    <td>@item.Name</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.IngredientId" class="btn btn-sm" style="background-color: #f8c471; color: #333;">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.IngredientId" class="btn btn-sm" style="background-color: #f5b041; color: #333;">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.IngredientId" class="btn btn-sm" style="background-color: indianred; color: #fff;">Delete</a>
+                    </td>
+                </tr>
+                index++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="3">No ingredients found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

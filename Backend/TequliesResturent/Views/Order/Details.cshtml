@@ -1,0 +1,45 @@
+﻿@model UserInfoViewModel
+
+@{
+    ViewBag.Title = "Order Details";
+}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Enter Your Details</h2>
+
+    <form asp-action="Details" method="post" class="card p-5 shadow mx-auto" style="max-width: 600px; border-radius: 15px;">
+        <div class="mb-3">
+            <label asp-for="FullName" class="form-label fw-bold">Full Name</label>
+            <input asp-for="FullName" class="form-control" placeholder="Name" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Address" class="form-label fw-bold">Address</label>
+            <input asp-for="Address" class="form-control" placeholder="123 Main St, City" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="ContactNumber" class="form-label fw-bold">Contact Number</label>
+            <input asp-for="ContactNumber" class="form-control" placeholder="+1234567890" />
+            <span asp-validation-for="ContactNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="PaymentMethod" class="form-label fw-bold">Payment Method</label>
+            <select asp-for="PaymentMethod" class="form-select">
+                <option value="">Select</option>
+                <option>Cash on Delivery</option>
+                <option>Online Payment</option>
+            </select>
+            <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn text-white px-5 py-2" style="background-color: #CD853F; border-radius: 8px;">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<TequliesResturent.Models.Product>
+
+@{
+    ViewBag.Title = "Tequiles Product Menu";
+}
+<div class="container my-5">
+<h2 class="mb-4  text-center" style="color: #6e4c1e;">Explore Our Delicious Menu</h2>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+        @foreach (var product in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="@Url.Content(product?.ImageUrl)" class="card-img-top fixed-image-height" alt="@product.Description" style="object-fit: cover; height: 200px;">
+
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text text-muted">@product.Description</p>
+                        <h6 class="text-success fw-bold mt-auto">$@product.Price.ToString("0.00")</h6>
+                        <a asp-action="Details" asp-route-id="@product.ProductId" class="btn mt-3 text-white" style="background-color: #CD853F; border-color: #CD853F;">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-warning text-center mt-4">
+        No products found.
+    </div>
+}
+</div>
