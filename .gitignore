@@ -1,0 +1,21 @@
+# Visual Studio Code
+.vs/
+.vscode/
+vs/
+
+# VS Code workspace files
+*.code-workspace
+
+# Other common ignores
+node_modules/
+.env
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
