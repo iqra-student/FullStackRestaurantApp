@@ -14,6 +14,8 @@ import UserProfile from './components/UserProfile.tsx';
 import AdminLogin from './Pages/AdminLogin.tsx';
 import AdminDashboard from './Pages/AdminDashboard.tsx';
 import ProtectedAdminRoute from './Pages/ProtectedAdminRoute.tsx';
+import AdminIngredients from './Pages/AdminIngredient.tsx';
+import AdminProduct from './Pages/AdminProduct.tsx';
 
 function App() {
 
@@ -40,10 +42,27 @@ function App() {
               path='/admin/dashboard'
               element={
                 <ProtectedAdminRoute>
-                  <AdminDashboard />
+                 <AdminDashboard />
                 </ProtectedAdminRoute>
               } />
+               <Route
+              path='/admin/ingredients'
+              element={
+                <ProtectedAdminRoute>
+                  <AdminIngredients />
+                </ProtectedAdminRoute>
+              } 
+            />
+             <Route
+              path='/admin/products'
+              element={
+                <ProtectedAdminRoute>
+                  <AdminProduct/>
+                </ProtectedAdminRoute>
+              } 
+            />
           </Routes>
+          
         </CartProvider>
       </Router>
     </>
