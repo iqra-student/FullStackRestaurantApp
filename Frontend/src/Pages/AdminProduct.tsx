@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import { Plus, Edit2, Trash2, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from './AdminLayout';
+import { IMAGE_BASE_URL } from "../api";
+
 
 // Types
 interface Product {
   productId: number;
   name: string;
   description: string;
-  price: number;
+  price: number;  
   stock: number;
   imageUrl: string;
   categoryId: number;
@@ -26,7 +28,7 @@ interface Category {
   name: string;
 }
 
-const API_BASE = 'https://localhost:7133/api';
+const API_BASE = 'http://localhost:5277/api';
 
 const AdminProduct = () => {
   // const [activeTab, setActiveTab] = useState('dashboard');
@@ -287,7 +289,7 @@ const AdminProduct = () => {
                     {filteredProducts.map((product) => (
                       <tr key={product.productId}>
                         <td className="px-6 py-4">
-                          <img src={`https://localhost:7133/${product.imageUrl}`} alt={product.name} className="h-12 w-12 rounded object-cover" />
+                          <img src={`${IMAGE_BASE_URL}/${product.imageUrl}`} alt={product.name} className="h-12 w-12 rounded object-cover" />
                         </td>
                         <td className="px-6 py-4 font-medium text-gray-900">{product.name}</td>
                         <td className="px-6 py-4 text-sm text-gray-500">{product.description}</td>

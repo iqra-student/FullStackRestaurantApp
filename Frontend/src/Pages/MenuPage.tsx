@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { IMAGE_BASE_URL} from '../api';
 import { API } from '../api';
+
 
 import Header from '../components/Header';
 import { useCart } from '../Context/CartContext';
@@ -256,7 +258,7 @@ const MenuCards: React.FC = () => {
               {/* Product Image */}
               <div className="relative h-64 bg-gray-200">
                 <img
-                  src={`https://localhost:7133/${product.imageUrl}`}
+                  src={`${IMAGE_BASE_URL}/${product.imageUrl}`}
                   alt={product.name}
                   className="w-full h-full object-cover"
                   onError={(e) => {

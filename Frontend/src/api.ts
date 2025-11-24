@@ -1,5 +1,5 @@
-const API_BASE_URL = "https://localhost:7133/api";
-export const IMAGE_BASE_URL = "https://localhost:7133";  
+const API_BASE_URL = "http://localhost:5277/api";
+export const IMAGE_BASE_URL = "http://localhost:5277";  
 
 
 export const API = {

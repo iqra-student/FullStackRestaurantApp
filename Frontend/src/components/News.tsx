@@ -1,9 +1,9 @@
 import { Send } from 'lucide-react';
 import React, { useState } from 'react'
 
-type Props = {}
 
-const News = (props: Props) => {
+
+const News = () => {
 
   const [email, setEmail] = useState('');
 

@@ -29,7 +29,7 @@ interface BulkCreateResult {
   }>;
 }
 
-const API_BASE = 'https://localhost:7133/api';
+const API_BASE = 'http://localhost:5277/api';
 
 const AdminIngredients = () => {
   const [ingredients, setIngredients] = useState<Ingredient[]>([]);

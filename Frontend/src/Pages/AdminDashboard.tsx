@@ -3,7 +3,7 @@ import { Package, ShoppingBag, Layers } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from './AdminLayout';
 
-const API_BASE = 'https://localhost:7133/api';
+const API_BASE = 'http://localhost:5277/api';
 
 interface DashboardStats {
   totalProducts: number;

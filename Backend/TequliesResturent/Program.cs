@@ -21,9 +21,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-
-
-// ✅ JWT Authentication setup
+// JWT
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 
@@ -48,59 +46,62 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages();
+// ONLY this! (Remove AddControllersWithViews/AddRazorPages)
+builder.Services.AddControllers();
 
+// Add Caching
+builder.Services.AddDistributedMemoryCache(); // <<< THIS FIXES THE CRASH
 builder.Services.AddMemoryCache();
+
+// Add session
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
 });
 
 
-// Add CORS policy
+// CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend",
-        policy =>
-        {
-            policy.WithOrigins("http://localhost:5173") // your React app origin
-                  .AllowAnyHeader()
-                  .AllowAnyMethod();
-        });
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:5173")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();
 
 app.UseCors("AllowFrontend");
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
 }
 else
 {
-    app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// Serve React build files
+app.UseDefaultFiles();
 app.UseStaticFiles();
+
+app.UseHttpsRedirection();
 
 app.UseRouting();
 
-// ✅ Add Authentication before Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseSession();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
+app.MapControllers();
+// React handles ALL pages
+app.MapFallbackToFile("index.html");
 
+// Seed Admin
 using (var scope = app.Services.CreateScope())
 {
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
@@ -109,4 +110,3 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
-
